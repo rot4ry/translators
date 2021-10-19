@@ -1,15 +1,52 @@
 <!DOCTYPE html>
 <meta charset='UTF-8'>
 <html lang='en'>
-    <head>
-        <link href='./styles.css' rel='stylesheet' type='text/css'>
-        <title>Form validator</title>
-        <header>
-            <p>Hello world</p>
-        </header>
-    </head>
-    <body>
+  <head>
+    <link href='./styles.css' rel='stylesheet' type='text/css'>
+    <title>Form validator</title>
+    <header>
+      <p>Form validator</p>
+    </header>
+  </head>
 
-    </body>
-    <script src='script.js'></script>
+  <body>
+    <form class='column'>
+      <div class='row'>
+        <div class='column'><label for='name'>Name: </label></div>
+        <div class='column'><input id='name' type='text'></div>
+      </div>
+
+      <div class='row'>
+        <div class='column'><label for='surname'>Surname: </label></div>
+        <div class='column'><input id='surname' type='text'></div>
+      </div>
+
+      <div class='row'>
+        <div class='column'><label for='email'>Email address: </label></div>
+        <div class='column'><input id='email' type='email'></div>
+      </div>
+
+      <div class='row'>
+        <div class='column'><label for='phone'>Phone number: </label></div>
+        <div class='column'><input id='phone' type='tel'></div>
+      </div>
+
+      <div class='row'>
+        <div class='column'><label for='passwd'>Password: </label></div>
+        <div class='column'><input id='passwd' type='password'></div>
+      </div>
+
+      <div class='row'>
+        <div class='column'><label for='passwdRepeat'>Repeat password: </label></div>
+        <div class='column'><input id='passwdRepeat' type='password'></div>
+      </div>
+
+      <div class='row'>
+        <div class='column'><button class='my-btn' type='reset'>Clear data</button></div>
+        <div class='column'><button class='my-btn' type='submit'>Create account</button></div>
+      </div>
+
+    </form>
+  </body>
+  <script src='script.js'></script>
 </html>
