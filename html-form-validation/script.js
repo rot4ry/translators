@@ -26,10 +26,11 @@ const validatePasswords = () => {
 }
 
 const validateForm = (e) => {
+  // if validations failed, refuse to submit the form
   if(!( validateNames() &&
         validateMail() &&
         validatePhone() && 
-        validatePasswords())
+        validatePasswords() )
   ) {
     e.preventDefault()
     console.log('Validation failed.')
