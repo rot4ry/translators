@@ -1,0 +1,107 @@
+html, body {
+  margin-left: 1%;
+}
+
+header > p {
+	color: rgb(26, 27, 27);
+	font-size: 4vh;
+  text-decoration: overline underline;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration-color: rgb(255, 255, 255);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: rgb(101, 132, 173);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 90vw;
+  height: 10vh;
+  margin-bottom: 1vh;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  margin-right: 0.5vw;
+
+  border-radius: 0.3vw;
+  background-color: rgb(132, 112, 202);
+}
+
+.left > label {
+  font-size: 2vh;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(31, 31, 31);
+}
+
+.right {
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: auto;
+  margin-left: 0.3vw;
+  
+  border-radius: 0.3vw;
+  background-color: rgb(129, 113, 168);
+  padding: 0.5vw;
+}
+
+.right > input {
+  width: 99%;
+  height: 99%;
+  font-size: 2vh;
+  font-weight: lighter;
+  text-align: center;
+  justify-content: center;
+  border-radius: 0.3vw;
+  border-style: none;
+  color: rgb(194, 192, 196);
+  background-color: rgb(132, 112, 202)
+}
+
+#pattern { 
+  font-size: 3.5vh;
+  color: rgb(26, 111, 114);
+  font-weight: bolder;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: fit-content;
+  width: 90vw;
+  padding-left: 2vh;
+  padding-bottom: 2vh;
+  border-radius: 0.3vw;
+  background-color: rgb(132, 112, 202);
+}
+
+.center > h2 {
+  color: rgb(26, 27, 27);
+	font-size: 3vh;
+  font-weight: lighter;
+  text-decoration: overline underline;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration-color: rgb(255, 255, 255);
+}
+
+#results > p {
+  color: rgb(194, 192, 196);
+  font-weight: 2vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
