@@ -10,47 +10,50 @@
   </head>
 
   <body>
-    <form class='my-frm column' id='frm'>
-      <div class='row'>
-        <div class='column left'><label for='name'>Name: </label></div>
-        <div class='column right'><input id='name' type='text'></div>
+    <div class='row'>
+      <div class='column'>
+        <form class='my-frm' id='frm'>
+          <div class='row'>
+            <div class='column left'><label for='name'>Name: </label></div>
+            <div class='column right'><input id='name' type='text'></div>
+          </div>
+          <div class='row'>
+            <div class='column left'><label for='surname'>Surname: </label></div>
+            <div class='column right'><input id='surname' type='text'></div>
+          </div>
+          <div class='row'>
+            <div class='column left'><label for='email'>Email address: </label></div>
+            <div class='column right'><input id='email' type='email'></div>
+          </div>
+          <div class='row'>
+            <div class='column left'><label for='phone'>Phone number: </label></div>
+            <div class='column right'><input id='phone' type='tel'></div>
+          </div>
+          <div class='row'>
+            <div class='column left'><label for='passwd'>Password: </label></div>
+            <div class='column right'><input id='passwd' type='password'></div>
+          </div>
+          <div class='row'>
+            <div class='column left'><label for='passwdRepeat'>Repeat password: </label></div>
+            <div class='column right'><input id='passwdRepeat' type='password'></div>
+          </div>
+          <div class='row' style='height: 100px';>
+            <div class='column center' style='margin-right: 1%;'>
+              <button class='my-btn' type='reset'>Clear data</button>
+            </div>
+            <div class='column center' style='margin-left: 1%;'>
+              <button class='my-btn' type='submit'>Create account</button>
+            </div>
+          </div>
+        </form>
       </div>
 
-      <div class='row'>
-        <div class='column left'><label for='surname'>Surname: </label></div>
-        <div class='column right'><input id='surname' type='text'></div>
+      <div id='errors-box'>
+        <h2>Errors:</h2>
+        
       </div>
-
-      <div class='row'>
-        <div class='column left'><label for='email'>Email address: </label></div>
-        <div class='column right'><input id='email' type='email'></div>
-      </div>
-
-      <div class='row'>
-        <div class='column left'><label for='phone'>Phone number: </label></div>
-        <div class='column right'><input id='phone' type='tel'></div>
-      </div>
-
-      <div class='row'>
-        <div class='column left'><label for='passwd'>Password: </label></div>
-        <div class='column right'><input id='passwd' type='password'></div>
-      </div>
-
-      <div class='row'>
-        <div class='column left'><label for='passwdRepeat'>Repeat password: </label></div>
-        <div class='column right'><input id='passwdRepeat' type='password'></div>
-      </div>
-
-      <div class='row'>
-        <div class='column center' style='margin-right: 1%;'>
-          <button class='my-btn' type='reset'>Clear data</button>
-        </div>
-        <div class='column center' style='margin-left: 1%;'>
-          <button class='my-btn' type='submit'>Create account</button>
-        </div>
-      </div>
-
-    </form>
+      
+    </div>
   </body>
   <script src='script.js'></script>
 </html>
