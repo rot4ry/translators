@@ -3,18 +3,21 @@ const results = document.querySelector('#results')
 const validate = () => {
   const pattern = document.querySelector('#pattern').value
   const string = document.querySelector('#string').value
+  results.replaceChildren()
   
-  console.log(`pattern: ${pattern}\nstring: ${string}`)
   if(pattern && string) {
-    console.log(...string.matchAll(`\\${pattern}`))
-
     for(const found of string.matchAll(pattern)) {
       const newMatch = document.createElement('p')
-      for(const item in found) {
-        newMatch.textContent += item + '/ '
-      }
+      const content = ''
+        .concat(`[ `)
+        .concat(`'${found[0]}', `)
+        .concat(`index: ${found['index']}, `)
+        .concat(`input: '${found['input']}', `)
+        .concat(`groups: ${found['groups']}`)
+        .concat(` ]`)
+
+      newMatch.textContent = content
       results.append(newMatch)
-      console.log('appended')
     }
   }
 }
