@@ -4,7 +4,9 @@ const validate = () => {
   const pattern = document.querySelector('#pattern').value
   const string = document.querySelector('#string').value
   results.replaceChildren()
-  
+  console.log('Pattern: ', pattern)
+  console.log('String: ', string)
+
   if(pattern && string) {
     for(const found of string.matchAll(pattern)) {
       const newMatch = document.createElement('p')
