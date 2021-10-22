@@ -109,3 +109,26 @@ body {
   font-size: 2vh;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 100;
+  width: auto;
+  font-size: 5vh;
+  font-weight: lighter;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(167, 175, 182);
+}
+
+.ovr-left {
+  align-items: flex-start;
+  margin-right: 63%;
+}
+
+.ovr-right {
+  align-items: flex-end;
+  margin-left: 63%;
+}
+
