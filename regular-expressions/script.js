@@ -4,15 +4,13 @@ const validate = () => {
   const pattern = document.querySelector('#pattern').value
   const string = document.querySelector('#string').value
   results.replaceChildren()
-  console.log('Pattern: ', pattern)
-  console.log('String: ', string)
-
+  
   if(pattern && string) {
     for (const found of string.matchAll(new RegExp(pattern, 'g'))) {
       const newMatch = document.createElement('p')
       let groups = []
       try {
-        for(const [key, value] of Object.entries(found['groups'])) {
+        for (const [key, value] of Object.entries(found['groups'])) {
           if(value != null) groups.push(key)
         }
       } catch (e) { groups = null }
