@@ -1,5 +1,5 @@
-let testingString = 'Hello world, hello user'
-let testingRegExp = new RegExp('hello', 'gi')
+let testingString = ''
+let testingRegExp = new RegExp(/\s/, 'g')
 
 console.log('String: ', testingString)
 console.log('RegEx: ', testingRegExp.toString(), '\n')
