@@ -1,7 +1,10 @@
-// check if:
-// - exists, longer than 0/2
 const validateNames = (e) => {
   const name = e.target.value
+  // [A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}
+  // .{3,10}
+  // OR
+  // [A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}([-\s])?([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10})?
+  // .{7,23}
   const namePattern = /name/gi
 
   return false
@@ -9,6 +12,7 @@ const validateNames = (e) => {
 
 // check if:
 // - is mail address
+// ([^$&+,:;=?@#|'<>.^*()%!-]+)@([^$&+,:;=?@#|'<>.^*()%!-]+)((\.\w{2,4})){1,3}
 const validateMail = (e) => {
   const mail = e.target.value
   const mailPattern = /mail/gi
@@ -19,6 +23,7 @@ const validateMail = (e) => {
 // check if phone:
 // - is long enough
 // - contains numbers
+// (\+48)[-\s](\d{3})[-\s](\d{3})[-\s](\d{3})
 const validatePhone = (e) => {
   const phone = e.target.value
   const phonePattern = /phone/gi
@@ -39,10 +44,10 @@ const validatePasswords = (e) => {
 
 const validateForm = (e) => {
   // if validations failed, refuse to submit the form
-  if(!( validateNames() &&
-        validateMail() &&
-        validatePhone() && 
-        validatePasswords() )
+  if(!( validateNames(e) &&
+        validateMail(e) &&
+        validatePhone(e) && 
+        validatePasswords(e) )
   ) {
     e.preventDefault()
     console.log('Validation failed.')
