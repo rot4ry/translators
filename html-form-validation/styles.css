@@ -126,6 +126,7 @@ body {
   align-items: flex-start;
   justify-content: flex-start;
   padding-left: 1%;
+  padding-right: 1%;
   border-color: rgb(53, 65, 65);
   border-radius: 10px;
   border-style: solid;
