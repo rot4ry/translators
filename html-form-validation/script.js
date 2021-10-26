@@ -1,18 +1,18 @@
 const errorsBox = document.querySelector('#errors-box')
 
-const displayError = (id, errorMessage) => {
-  if (document.querySelector(`#err-${id}`) === null) {
+const displayError = (id, type, errorMessage) => {
+  if (document.querySelector(`#err-${id}-${type}`) === null) {
     const newError = document.createElement('p')
-    newError.id = `err-${id}`
+    newError.id = `err-${id}-${type}`
     newError.innerText = errorMessage
     errorsBox.appendChild(newError)
   }
 }
 
-const removeError = (id) => {
-  const elementToRemove = document.querySelector(`#err-${id}`)
+const removeError = (id, type) => {
+  const elementToRemove = document.querySelector(`#err-${id}-${type}`)
   if (elementToRemove !== null) {
-    elementToRemove.parentElement.removeChild(elementToRemove)
+    document.querySelector('#errors-box').removeChild(elementToRemove)
   }
 }
 
@@ -20,28 +20,23 @@ const validateNames = (e) => {
   const elementID = e.target.id
   const toValidate = e.target.value
 
-  const nameLength = new RegExp(/.{3,23}/)
-  const surnameLength = new RegExp(/.{2,28}/)
   const shortNamePattern = new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}/)
   const longNamePattern = new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}([-\s])?([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10})?/)
   
   switch (elementID) {
+    //  ^[^\s0-9]{2,5}[^-]$
+    //  ^\b([A-Za-z]{3,5})\b
     case 'name':
-      //  ^[^\s0-9]{2,5}[^-]$
-      //  ^\b([A-Za-z]{3,5})\b
-      if (!new RegExp(/^\b.{3,5}\b/).test(toValidate)) {
-        displayError(elementID, 'Name must be between 3 and 23 characters long.')
-      } else {
-        removeError(elementID)
-      }
-      break
+      !new RegExp(/^\b.{3,23}\b/).test(toValidate) ?
+        displayError(elementID, 'length', 'Name must be between 3 and 23 characters long.') :
+        removeError(elementID, 'length')
+    break
+    
     case 'surname':
-      if (!new RegExp(/\b.{2,28}\b/).test(toValidate)) {
-        displayError(elementID, 'Surname must be between 2 and 28 characters long.')
-      } else {
-        removeError(elementID)
-      }
-      break
+      !new RegExp(/\b.{2,28}\b/).test(toValidate) ?
+        displayError(elementID, 'length', 'Surname must be between 2 and 28 characters long.') :
+        removeError(elementID, 'length')
+    break
   }
   return false
 }
