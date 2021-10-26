@@ -1,21 +1,4 @@
 const errorsBox = document.querySelector('#errors-box')
-
-const displayError = (id, type, errorMessage) => {
-  if (document.querySelector(`#err-${id}-${type}`) === null) {
-    const newError = document.createElement('p')
-    newError.id = `err-${id}-${type}`
-    newError.innerText = errorMessage
-    errorsBox.appendChild(newError)
-  }
-}
-
-const removeError = (id, type) => {
-  const elementToRemove = document.querySelector(`#err-${id}-${type}`)
-  if (elementToRemove !== null) {
-    document.querySelector('#errors-box').removeChild(elementToRemove)
-  }
-}
-
 const patterns = {
   'name': {
     length: {
@@ -23,8 +6,8 @@ const patterns = {
       message: 'Name must be between 3 and 23 characters long.'
     },
     format: {
-      patternShort: new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}/),
-      patternLong: new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}([-\s])?([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10})?/),
+      patternShort: new RegExp(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}$/),
+      patternLong: new RegExp(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,}([-\s])?([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,})?$/),
       message: 'Name can consist only of English and Polish characters, can also contain a hyphen.'
     },
     validationResult: false
@@ -32,11 +15,11 @@ const patterns = {
   'surname': {
     length: {
       pattern: new RegExp(/^.{2,28}$/),
-      message: 'Name must be between 2 and 28 characters long.'
+      message: 'Surname must be between 2 and 28 characters long.'
     },
     format: {
-      patternShort: new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}/),
-      patternLong: new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}([-\s])?([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10})?/), // tochange
+      patternShort: new RegExp(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}$/),
+      patternLong: new RegExp(/^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,}([-\s])?([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{0,})?$/),
       message: 'Surname can consist only of English and Polish characters, can also contain a hyphen.'
     },
     validationResult: false
@@ -47,19 +30,19 @@ const patterns = {
       message: 'Email adress must be at most 255 characters long.'
     },
     format: {
-      pattern: new RegExp(/\b([^\s$&+,:;=?@#|'<>.^*()%!-]+)@([^\s$&+,:;=?@#|'<>.^*()%!-]+)((\.\w{2,4})){1,3}\b/),
+      pattern: new RegExp(/^([^\s$&+,:;=?@#|'<>.^*()%!0-9_-][^\s$&+,:;=?@#|'<>.^*()%!_-]+)@([^\s$&+,:;=?@#|'<>.^*()%!_-]+)((\.\w{2,4})){1,3}$/),
       message: 'Email address must have a format of <username>@<server-domain-name> (e.g. hello@world.com)'
     },
     validationResult: false
   },
-  'phone': {   // TODO
+  'phone': {
     length: {
       pattern: new RegExp(/^.{9,15}$/),
       message: 'Phone number must be between 9 and 15 characters long.'
     },
     format: {
-      pattern: new RegExp(),
-      message: ''
+      pattern: new RegExp(/^((\+48\s?)|(\(\+48\)\s?))?(\d{3})(([-]|[\s])?(\d{3})){2}$/),
+      message: 'Phone number can consist of (+48) in the beginning, digits, hyphens and spaces.'
     },
     validationResult: false
   },
@@ -76,6 +59,21 @@ const patterns = {
   }
 }
 
+const displayError = (id, type, errorMessage) => {
+  if (document.querySelector(`#err-${id}-${type}`) === null) {
+    const newError = document.createElement('p')
+    newError.id = `err-${id}-${type}`
+    newError.innerText = errorMessage
+    errorsBox.appendChild(newError)
+  }
+}
+
+const removeError = (id, type) => {
+  const elementToRemove = document.querySelector(`#err-${id}-${type}`)
+  if (elementToRemove !== null) {
+    document.querySelector('#errors-box').removeChild(elementToRemove)
+  }
+}
 
 const validateNames = (e) => {
   const elementID = e.target.id
