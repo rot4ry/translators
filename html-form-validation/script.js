@@ -16,48 +16,85 @@ const removeError = (id, type) => {
   }
 }
 
+const patterns = {
+  'name': {
+    length: {
+      pattern: new RegExp(/^.{3,23}$/),
+      message: 'Name must be between 3 and 23 characters long.'
+    },
+    format: {
+      patternShort: new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}/),
+      patternLong: new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}([-\s])?([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10})?/),
+      message: 'Name can consist only of English and Polish characters, can also contain a hyphen.'
+    },
+    validationResult: false
+  },
+  'surname': {
+    length: {
+      pattern: new RegExp(/^.{2,28}$/),
+      message: 'Name must be between 2 and 28 characters long.'
+    },
+    format: {
+      patternShort: new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}/),
+      patternLong: new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}([-\s])?([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10})?/), // tochange
+      message: 'Surname can consist only of English and Polish characters, can also contain a hyphen.'
+    },
+    validationResult: false
+  },
+  'email': {
+    length: {
+      pattern: new RegExp(/^.{1,255}$/),
+      message: 'Email adress must be at most 255 characters long.'
+    },
+    format: {
+      pattern: new RegExp(/\b([^\s$&+,:;=?@#|'<>.^*()%!-]+)@([^\s$&+,:;=?@#|'<>.^*()%!-]+)((\.\w{2,4})){1,3}\b/),
+      message: 'Email address must have a format of <username>@<server-domain-name> (e.g. hello@world.com)'
+    },
+    validationResult: false
+  },
+  'phone': {   // TODO
+    length: {
+      pattern: new RegExp(/^.{9,15}$/),
+      message: 'Phone number must be between 9 and 15 characters long.'
+    },
+    format: {
+      pattern: new RegExp(),
+      message: ''
+    },
+    validationResult: false
+  },
+  'password': {   // TODO
+    length: {
+      pattern: new RegExp(/^.{8,24}$/),
+      message: 'Password must be between 8 and 24 characters long.'
+    },
+    format: {
+      pattern: new RegExp(),
+      message: ''
+    },
+    validationResult: false
+  }
+}
+
+
 const validateNames = (e) => {
   const elementID = e.target.id
   const toValidate = e.target.value
-
-  const shortNamePattern = new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}/)
-  const longNamePattern = new RegExp(/[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10}([-\s])?([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{2,10})?/)
-  
-  switch (elementID) {
-    //  ^[^\s0-9]{2,5}[^-]$
-    //  ^\b([A-Za-z]{3,5})\b
-    case 'name':
-      !new RegExp(/^\b.{3,23}\b/).test(toValidate) ?
-        displayError(elementID, 'length', 'Name must be between 3 and 23 characters long.') :
-        removeError(elementID, 'length')
-    break
-    
-    case 'surname':
-      !new RegExp(/\b.{2,28}\b/).test(toValidate) ?
-        displayError(elementID, 'length', 'Surname must be between 2 and 28 characters long.') :
-        removeError(elementID, 'length')
-    break
-  }
   return false
 }
 
 const validateMail = (e) => {
   const mail = e.target.value
-  const mailPattern = /mail/gi
-  // ([^$&+,:;=?@#|'<>.^*()%!-]+)@([^$&+,:;=?@#|'<>.^*()%!-]+)((\.\w{2,4})){1,3}
   return false
 }
 
 const validatePhone = (e) => {
   const phone = e.target.value
-  const phonePattern = /phone/gi
-  // (\+48)[-\s](\d{3})[-\s](\d{3})[-\s](\d{3})
   return false
 }
 
 const validatePasswords = (e) => {
   const password = e.target.value
-  const passwordPattern = /password/gi
   return false
 }
 
