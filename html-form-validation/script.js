@@ -142,18 +142,17 @@ const validate = (e) => {
     }
   }
 }
+
 // validate passwords separately?
+// password === passwordRepeat
 
 const validateForm = (e) => {
-  // if validations failed, refuse to submit the form
-  let correct = true //  correct = all validationResults &&
+  let correct = true
   for (const inputName in patterns) {
     for (const property in patterns[inputName]) {
       correct = correct && patterns[inputName][property].validationResult
     }
   }
-  
-  // and password === passwordRepeat
 
   if (!correct) {
     e.preventDefault()
@@ -163,16 +162,18 @@ const validateForm = (e) => {
   }
 }
 
-// Uncomment to show errors on load
-// Not a very nice look
-// function initialValidation () {
-//   for (const inputName in patterns) {
-//     for (const property in patterns[inputName]) {
-//       displayError(inputName, property, patterns[inputName][property].message)
-//     }
-//   }
-// }
-// window.addEventListener('DOMContentLoaded', initialValidation)
+//  Uncomment to show errors on load
+//  Not a very nice look
+/*
+function initialValidation () {
+  for (const inputName in patterns) {
+    for (const property in patterns[inputName]) {
+      displayError(inputName, property, patterns[inputName][property].message)
+    }
+  }
+}
+window.addEventListener('DOMContentLoaded', initialValidation)
+*/
 for (const input of document.querySelectorAll('input')) {
   input.addEventListener('input', (e) => validate(e))
 }
