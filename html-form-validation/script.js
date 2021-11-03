@@ -48,8 +48,8 @@ const patterns = {
   },
   'phone': {
     length: {
-      pattern: new RegExp(/^.{9,15}$/),
-      message: 'Phone number must be between 9 and 15 characters long.',
+      pattern: new RegExp(/^.{9,18}$/),
+      message: 'Phone number must be between 9 and 18 characters long.',
       validationResult: false
     },
     format: {
@@ -131,11 +131,18 @@ const removeError = (id, type) => {
 }
 
 const validate = (e) => {
-  const id = e.target.id
-  const input = e.target.value
-  //  template
-  //  patterns[id].validationResult = patterns[id].length.pattern.test(input) 
-  //  console.log(patterns[e.target.id].validationResult)
+  const inputName = e.target.id
+
+  for (const property in patterns[inputName]) {
+    if (patterns[inputName][property].pattern.test(e.target.value)) {
+      patterns[inputName][property].validationResult = true
+      removeError(inputName, property)
+    } else {
+      patterns[inputName][property].validationResult = false
+      displayError(inputName, property, patterns[inputName][property].message)
+    }
+    // console.log(property, ' -> ', patterns[inputName][property].validationResult)
+  }
 }
 
 const validateForm = (e) => {
