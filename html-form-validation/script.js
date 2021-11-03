@@ -58,30 +58,57 @@ const patterns = {
       validationResult: false
     }
   },
-  'password': {   // TODO
+  'password': {
     length: {
       pattern: new RegExp(/^.{8,24}$/),
       message: 'Password must be between 8 and 24 characters long.',
       validationResult: false
     },
     specialCharacters: {
-      pattern: new RegExp(),
-      message: '',
+      pattern: new RegExp(/[!@#$%^&*+=\[\]{}()\\|;:'",<.>/?`~_-]+/),
+      message: 'Password must contain at least one special character.',
       validationResult: false
     },
     numbers: {
-      pattern: new RegExp(),
-      message: '',
+      pattern: new RegExp(/[0123456789]+/),
+      message: 'Password must contain at least one digit character.',
       validationResult: false
     },
     capitalLetters: {
-      pattern: new RegExp(),
-      message: '',
+      pattern: new RegExp(/[A-Z]+/),
+      message: 'Password must contain at least one capital letter.',
       validationResult: false
     },
     noSpaces: {
-      pattern: new RegExp(),
-      message: '',
+      pattern: new RegExp(/^([\S]*)$/),
+      message: 'Password must NOT contain white characters.',
+      validationResult: false
+    }
+  },
+  'passwordRepeat': {
+    length: {
+      pattern: new RegExp(/^.{8,24}$/),
+      message: 'Password must be between 8 and 24 characters long.',
+      validationResult: false
+    },
+    specialCharacters: {
+      pattern: new RegExp(/[!@#$%^&*+=\[\]{}()\\|;:'",<.>/?`~_-]+/),
+      message: 'Password must contain at least one special character.',
+      validationResult: false
+    },
+    numbers: {
+      pattern: new RegExp(/[0123456789]+/),
+      message: 'Password must contain at least one digit character.',
+      validationResult: false
+    },
+    capitalLetters: {
+      pattern: new RegExp(/[A-Z]+/),
+      message: 'Password must contain at least one capital letter.',
+      validationResult: false
+    },
+    noSpaces: {
+      pattern: new RegExp(/^([\S]*)$/),
+      message: 'Password must NOT contain white characters.',
       validationResult: false
     }
   }
@@ -103,53 +130,26 @@ const removeError = (id, type) => {
   }
 }
 
-// const validateNames = (e) => {
-//   const elementID = e.target.id
-//   const toValidate = e.target.value
-//   return false
-// }
-
-// const validateMail = (e) => {
-//   const mail = e.target.value
-//   return false
-// }
-
-// const validatePhone = (e) => {
-//   const phone = e.target.value
-//   return false
-// }
-
-// const validatePasswords = (e) => {
-//   const password = e.target.value
-//   return false
-// }
-
 const validate = (e) => {
   const id = e.target.id
   const input = e.target.value
-  patterns[id].validationResult = patterns[id].length.pattern.test(input)
-  console.log(patterns[e.target.id].validationResult)
+  //  template
+  //  patterns[id].validationResult = patterns[id].length.pattern.test(input) 
+  //  console.log(patterns[e.target.id].validationResult)
 }
 
-// const validateForm = (e) => {
-//   // if validations failed, refuse to submit the form
-//   if (!(validateNames(e) &&
-//         validateMail(e) &&
-//         validatePhone(e) &&
-//         validatePasswords(e))
-//   ) {
-//     e.preventDefault()
-//     console.log('Validation failed.')
-//   } else {
-//     console.log('Validation succeeded, submitting...')
-//   }
-// }
+const validateForm = (e) => {
+  // if validations failed, refuse to submit the form
+  const correct = false //  correct = all validationResults ||
+  if (!correct) {
+    e.preventDefault()
+    console.log('Validation failed.')
+  } else {
+    console.log('Validation succeeded, submitting...')
+  }
+}
 
-document.querySelector('#name').addEventListener('input', (e) => validate(e))
-document.querySelector('#surname').addEventListener('input', (e) => validateNames(e))
-document.querySelector('#email').addEventListener('input', (e) => validateMail(e))
-document.querySelector('#phone').addEventListener('input', (e) => validatePhone(e))
-document.querySelector('#passwd').addEventListener('input', (e) => validatePasswords(e))
-document.querySelector('#passwdRepeat').addEventListener('input', (e) => validatePasswords(e))
-
+for (const input of document.querySelectorAll('input')) {
+  input.addEventListener('input', (e) => validate(e))
+}
 document.querySelector('#frm').addEventListener('submit', (e) => validateForm(e))
