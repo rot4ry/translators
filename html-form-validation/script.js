@@ -142,16 +142,24 @@ const validate = (e) => {
     }
   }
 }
+// validate passwords separately?
 
 const validateForm = (e) => {
   // if validations failed, refuse to submit the form
-  const correct = false //  correct = all validationResults ||
+  let correct = true //  correct = all validationResults &&
+  for (const inputName in patterns) {
+    for (const property in patterns[inputName]) {
+      correct = correct && patterns[inputName][property].validationResult
+    }
+  }
+  
   // and password === passwordRepeat
+
   if (!correct) {
     e.preventDefault()
-    console.log('Validation failed.')
+    alert('Validation failed.')
   } else {
-    console.log('Validation succeeded, submitting...')
+    alert('Validation succeeded, submitting...')
   }
 }
 
