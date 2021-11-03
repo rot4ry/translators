@@ -132,7 +132,6 @@ const removeError = (id, type) => {
 
 const validate = (e) => {
   const inputName = e.target.id
-
   for (const property in patterns[inputName]) {
     if (patterns[inputName][property].pattern.test(e.target.value)) {
       patterns[inputName][property].validationResult = true
@@ -141,13 +140,13 @@ const validate = (e) => {
       patterns[inputName][property].validationResult = false
       displayError(inputName, property, patterns[inputName][property].message)
     }
-    // console.log(property, ' -> ', patterns[inputName][property].validationResult)
   }
 }
 
 const validateForm = (e) => {
   // if validations failed, refuse to submit the form
   const correct = false //  correct = all validationResults ||
+  // and password === passwordRepeat
   if (!correct) {
     e.preventDefault()
     console.log('Validation failed.')
@@ -156,6 +155,16 @@ const validateForm = (e) => {
   }
 }
 
+// Uncomment to show errors on load
+// Not a very nice look
+// function initialValidation () {
+//   for (const inputName in patterns) {
+//     for (const property in patterns[inputName]) {
+//       displayError(inputName, property, patterns[inputName][property].message)
+//     }
+//   }
+// }
+// window.addEventListener('DOMContentLoaded', initialValidation)
 for (const input of document.querySelectorAll('input')) {
   input.addEventListener('input', (e) => validate(e))
 }
